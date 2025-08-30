@@ -25,7 +25,7 @@ jobs:
     - name: Run Kairós for Tech
       env:
         HF_ADVERSARY_URL: ${{ secrets.HF_ADVERSARY_URL }}
-        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
         GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
@@ -46,7 +46,7 @@ jobs:
     - name: Run Kairós for Sustainability
       env:
         HF_ADVERSARY_URL: ${{ secrets.HF_ADVERSARY_URL }}
-        GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
         GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}

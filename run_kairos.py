@@ -2,40 +2,24 @@
 import os
 import requests
 import sys
-import json
-from langchain_google_genai import ChatGoogleGenerativeAI
 from datetime import datetime
+from langchain_google_genai import ChatGoogleGenerativeAI
 from reporter import create_and_save_google_doc
-from google.oauth2.service_account import Credentials
 
 # --- Configuration from GitHub Secrets ---
 HF_ADVERSARY_URL = os.environ.get("HF_SPACE_URL")
 
-# --- Unified Authentication using Service Account ---
-# This is the standard and correct method for authenticating in a non-Google environment like GitHub Actions.
-try:
-    # Load the entire JSON string from the environment variable
-    service_account_info = json.loads(os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON"))
-    
-    # Define the necessary scopes for Gemini (Cloud Platform) and Drive/Docs
-    scopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/drive',
-        'https://www.googleapis.com/auth/documents'
-    ]
-    
-    # Create credentials from the service account info
-    credentials = Credentials.from_service_account_info(service_account_info, scopes=scopes)
+# --- Authentication via API Key ---
+# Make sure GOOGLE_API_KEY is set as a GitHub Actions secret
+api_key = os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    print("ERROR: GOOGLE_API_KEY environment variable is missing. Set it in GitHub Secrets.")
+    sys.exit(1)
 
-except Exception as e:
-    print(f"ERROR: Could not load Google Service Account credentials. Make sure the GOOGLE_SERVICE_ACCOUNT_JSON secret is set correctly. Details: {e}")
-    sys.exit(1) # Exit with an error code
-
-# --- Initialize LLM with Service Account Credentials ---
-# The LangChain client will automatically use the provided credentials for authentication.
+# --- Initialize LLM ---
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
-    credentials=credentials,
+    api_key=api_key,
     temperature=0.7
 )
 
@@ -69,7 +53,6 @@ def run_cycle(topic: str):
         analysis_results = response.json()
     except Exception as e:
         print(f"Failed to get analysis from Ethical Adversary service. Error: {e}")
-        # Create a failure report if the service call fails
         create_and_save_google_doc(
             title=f"FAILED Analysis for {topic} - {datetime.now().strftime('%Y-%m-%d')}",
             content=f"The Ethical Adversary service failed to process the idea '{startup_idea}'.\n\nError: {e}"
