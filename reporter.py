@@ -20,6 +20,7 @@ def get_google_services():
 def create_and_save_google_doc(title: str, content: str):
     """Creates a Google Doc in the shared folder and writes content into it."""
     DRIVE_FOLDER_ID = os.environ.get("DRIVE_FOLDER_ID")
+    PERSONAL_EMAIL = os.environ.get("PERSONAL_EMAIL")  # put your Gmail in GitHub secret
     print(f"---REPORTER: Creating Google Doc: {title}---")
     try:
         docs_service, drive_service = get_google_services()
@@ -43,7 +44,31 @@ def create_and_save_google_doc(title: str, content: str):
             documentId=doc_id, body={"requests": requests_body}
         ).execute()
 
-        print(f"✅ Successfully created doc: https://docs.google.com/document/d/{doc_id}/edit")
+        # 3. Transfer ownership (or at least share with you)
+        if PERSONAL_EMAIL:
+            try:
+                drive_service.permissions().create(
+                    fileId=doc_id,
+                    body={
+                        "type": "user",
+                        "role": "owner",   # change to "writer" if transfer not allowed
+                        "emailAddress": PERSONAL_EMAIL,
+                    },
+                    transferOwnership=True
+                ).execute()
+                print(f"✅ Ownership transferred to {PERSONAL_EMAIL}")
+            except Exception as e:
+                print(f"⚠️ Could not transfer ownership, sharing as editor instead: {e}")
+                drive_service.permissions().create(
+                    fileId=doc_id,
+                    body={
+                        "type": "user",
+                        "role": "writer",
+                        "emailAddress": PERSONAL_EMAIL,
+                    }
+                ).execute()
+
+        print(f"✅ Created doc: https://docs.google.com/document/d/{doc_id}/edit")
         return True
     except Exception as e:
         print(f"ERROR creating Google Doc: {e}")
