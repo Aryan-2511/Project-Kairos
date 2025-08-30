@@ -2,16 +2,31 @@
 import os
 import requests
 import sys
+import json
 from langchain_google_genai import ChatGoogleGenerativeAI
 from datetime import datetime
 from reporter import create_and_save_google_doc
+from google.oauth2.service_account import Credentials
 
 # --- Configuration from GitHub Secrets ---
-HF_ADVERSARY_URL = os.environ.get("HF_ADVERSARY_URL")
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+HF_ADVERSARY_URL = os.environ.get("HF_SPACE_URL")
 
-# --- Initialize LLM ---
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GEMINI_API_KEY, temperature=0.7)
+# --- Unified Authentication using Service Account ---
+# This is the standard method for authenticating in a non-Google environment.
+try:
+    service_account_info = json.loads(os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON"))
+    scopes = ['https://www.googleapis.com/auth/cloud-platform']
+    credentials = Credentials.from_service_account_info(service_account_info, scopes=scopes)
+except Exception as e:
+    print(f"ERROR: Could not load Google Service Account credentials. Make sure the GOOGLE_SERVICE_ACCOUNT_JSON secret is set correctly. Details: {e}")
+    sys.exit(1) # Exit with an error code
+
+# --- Initialize LLM with Service Account Credentials ---
+llm = ChatGoogleGenerativeAI(
+    model="gemini-1.5-flash",
+    credentials=credentials,
+    temperature=0.7
+)
 
 # --- Agent Definitions ---
 def ideation_agent(topic: str) -> str:
@@ -43,6 +58,11 @@ def run_cycle(topic: str):
         analysis_results = response.json()
     except Exception as e:
         print(f"Failed to get analysis from Ethical Adversary service. Error: {e}")
+        # Create a failure report if the service call fails
+        create_and_save_google_doc(
+            title=f"FAILED Analysis for {topic} - {datetime.now().strftime('%Y-%m-%d')}",
+            content=f"The Ethical Adversary service failed to process the idea '{startup_idea}'.\n\nError: {e}"
+        )
         return
 
     # 3. Report the Analysis
