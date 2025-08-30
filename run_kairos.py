@@ -12,16 +12,27 @@ from google.oauth2.service_account import Credentials
 HF_ADVERSARY_URL = os.environ.get("HF_SPACE_URL")
 
 # --- Unified Authentication using Service Account ---
-# This is the standard method for authenticating in a non-Google environment.
+# This is the standard and correct method for authenticating in a non-Google environment like GitHub Actions.
 try:
+    # Load the entire JSON string from the environment variable
     service_account_info = json.loads(os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON"))
-    scopes = ['https://www.googleapis.com/auth/cloud-platform']
+    
+    # Define the necessary scopes for Gemini (Cloud Platform) and Drive/Docs
+    scopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/drive',
+        'https://www.googleapis.com/auth/documents'
+    ]
+    
+    # Create credentials from the service account info
     credentials = Credentials.from_service_account_info(service_account_info, scopes=scopes)
+
 except Exception as e:
     print(f"ERROR: Could not load Google Service Account credentials. Make sure the GOOGLE_SERVICE_ACCOUNT_JSON secret is set correctly. Details: {e}")
     sys.exit(1) # Exit with an error code
 
 # --- Initialize LLM with Service Account Credentials ---
+# The LangChain client will automatically use the provided credentials for authentication.
 llm = ChatGoogleGenerativeAI(
     model="gemini-1.5-flash",
     credentials=credentials,
