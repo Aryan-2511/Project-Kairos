@@ -3,11 +3,9 @@ name: Kairós Weekly Research Cycle
 
 on:
   schedule:
-    # Runs at 9 AM UTC every Monday
-    - cron: '0 9 * * 1'
-    # Runs at 9 AM UTC every Thursday
-    - cron: '0 9 * * 4'
-  workflow_dispatch: # Allows you to run it manually from the Actions tab for testing
+    - cron: '0 9 * * 1'   # Monday 9 AM UTC
+    - cron: '0 9 * * 4'   # Thursday 9 AM UTC
+  workflow_dispatch:
 
 jobs:
   tech-analysis:
@@ -16,12 +14,18 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
+
     - name: Install dependencies
       run: pip install -r requirements.txt
+
+    - name: Restore OAuth token
+      run: echo "${{ secrets.GOOGLE_OAUTH_TOKEN }}" | base64 --decode > token.pickle
+
     - name: Run Kairós for Tech
       env:
         HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
@@ -37,12 +41,18 @@ jobs:
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
+
     - name: Install dependencies
       run: pip install -r requirements.txt
+
+    - name: Restore OAuth token
+      run: echo "${{ secrets.GOOGLE_OAUTH_TOKEN }}" | base64 --decode > token.pickle
+
     - name: Run Kairós for Sustainability
       env:
         HF_SPACE_URL: ${{ secrets.HF_SPACE_URL }}
