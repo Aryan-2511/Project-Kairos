@@ -8,10 +8,10 @@ from reporter import create_and_save_google_doc
 
 # --- Configuration from GitHub Secrets ---
 HF_ADVERSARY_URL = os.environ.get("HF_ADVERSARY_URL")
-GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 # --- Initialize LLM ---
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GOOGLE_API_KEY, temperature=0.7)
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", gemini_api_key=GEMINI_API_KEY, temperature=0.7)
 
 # --- Agent Definitions ---
 def ideation_agent(topic: str) -> str:
