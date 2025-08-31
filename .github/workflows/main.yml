@@ -3,13 +3,14 @@ name: Kairós Weekly Research Cycle
 
 on:
   schedule:
-    - cron: '0 9 * * 1'   # Monday 9 AM UTC
-    - cron: '0 9 * * 4'   # Thursday 9 AM UTC
-  workflow_dispatch:
+    # Runs at 9 AM UTC every Monday
+    - cron: '0 9 * * 1'
+    # Runs at 9 AM UTC every Thursday
+    - cron: '0 9 * * 4'
+  workflow_dispatch: # Allows manual trigger
 
 jobs:
   tech-analysis:
-    if: github.event.schedule == '0 9 * * 1' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
@@ -36,7 +37,6 @@ jobs:
       run: python run_kairos.py Tech
 
   sustainability-analysis:
-    if: github.event.schedule == '0 9 * * 4' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
