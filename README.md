@@ -1,22 +1,37 @@
-🌌 Project KAIROS
-![Kairos Logo](assets/Kairos_logo.png)
-![Kairos Banner](assets/Kairos_banner.png)
+<p align="center">
+  <img src="assets/KAIROS_logo.png" alt="Kairos Logo" width="400"/>
+</p>
 
-🚀 Research Smarter. Dream Bigger.
+<h1 align="center">🌌 Project KAIROS</h1>
+<p align="center"><i>🚀 Research Smarter. Dream Bigger.</i></p>
 
-    <p align="center"> <img src="https://img.shields.io/badge/KAIROS-Research%20Smarter.%20Dream%20Bigger.-black?style=for-the-badge&logo=rocket&logoColor=white"> <img src="https://img.shields.io/badge/Focus-Startup%20Ideas-blueviolet?style=for-the-badge&logo=bulb&logoColor=white"> <img src="https://img.shields.io/badge/AI-Personal%20Assistant-green?style=for-the-badge&logo=robot&logoColor=white"> <img src="https://img.shields.io/badge/Automation-GitHub%20Actions-lightgrey?style=for-the-badge&logo=githubactions&logoColor=blue"> <img src="https://img.shields.io/badge/Status-Always%20Learning-orange?style=for-the-badge&logo=hourglass&logoColor=white"> </p>
+---
 
-🌟 What is Kairos?
+<p align="center">
+  <img src="assets/kairos-banner.svg" alt="Kairos Banner"/>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/KAIROS-Research%20Smarter.%20Dream%20Bigger.-black?style=for-the-badge&logo=rocket&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Focus-Startup%20Ideas-blueviolet?style=for-the-badge&logo=bulb&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AI-Personal%20Assistant-green?style=for-the-badge&logo=robot&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Automation-GitHub%20Actions-lightgrey?style=for-the-badge&logo=githubactions&logoColor=blue"/>
+  <img src="https://img.shields.io/badge/Status-Always%20Learning-orange?style=for-the-badge&logo=hourglass&logoColor=white"/>
+</p>
+
+---
+
+## 🌟 What is Kairos?
 
     Kairos is your personal automated AI assistant 🤖 that helps you research, analyze, and explore startup ideas faster.
     It combines AI reasoning, Hugging Face Spaces, and GitHub Actions automation to create reports 📑 and insights 🔍 — without you lifting a finger.
 
-🏗️ Architecture
+## 🏗️ Architecture
 
 Here’s how Kairos works under the hood:![Architecture](assets/architecture.png)
 
 
-⚡ Quick Start
+## ⚡ Quick Start
 
     1️⃣ Deploy API on Hugging Face Spaces
     ➡️ Hugging Face Repo: https://huggingface.co/spaces/Aryan-2511/ethical-adversary-api/tree/main
@@ -30,14 +45,14 @@ Here’s how Kairos works under the hood:![Architecture](assets/architecture.png
 
     Creates Google Docs reports 📊 with your research
 
-🎨 Visuals
+## 🎨 Visuals
 
     📅 Automation Cycle
     ✔️ Every Monday → Generate fresh startup insights
     ✔️ Every Thursday → Deep-dive follow-ups
     ✔️ Anytime → Manual run from GitHub Actions
 
-💡 Why Kairos?
+## 💡 Why Kairos?
 
     🧠 AI-first approach → Smarter research, faster decisions
 
@@ -47,7 +62,7 @@ Here’s how Kairos works under the hood:![Architecture](assets/architecture.png
 
     🚀 Built for innovators → Focus on execution, not research busywork
 
-📌 Roadmap
+## 📌 Roadmap
 
     ✔️ Idea generation automation
 
@@ -61,11 +76,11 @@ Here’s how Kairos works under the hood:![Architecture](assets/architecture.png
 
     ⏳ Multi-topic parallel runs
 
-🤝 Contributing
+## 🤝 Contributing
 
     Contributions are welcome! 🎉
 
-👨‍💻 Author
+## 👨‍💻 Author
 
     Made with ❤️ by Aryan
 
