@@ -23,8 +23,8 @@
 
 ## 🌟 What is Kairos?
 
-    Kairos is your personal automated AI assistant 🤖 that helps you research, analyze, and explore startup ideas faster.
-    It combines AI reasoning, Hugging Face Spaces, and GitHub Actions automation to create reports 📑 and insights 🔍 — without you lifting a finger.
+Kairos is your personal automated AI assistant 🤖 that helps you research, analyze, and explore startup ideas faster.
+It combines AI reasoning, Hugging Face Spaces, and GitHub Actions automation to create reports 📑 and insights 🔍 — without you lifting a finger.
 
 ---
 
