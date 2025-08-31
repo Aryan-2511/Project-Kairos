@@ -26,10 +26,13 @@
     Kairos is your personal automated AI assistant 🤖 that helps you research, analyze, and explore startup ideas faster.
     It combines AI reasoning, Hugging Face Spaces, and GitHub Actions automation to create reports 📑 and insights 🔍 — without you lifting a finger.
 
+---
+
 ## 🏗️ Architecture
 
 Here’s how Kairos works under the hood:![Architecture](assets/architecture.png)
 
+---
 
 ## ⚡ Quick Start
 
@@ -45,12 +48,16 @@ Here’s how Kairos works under the hood:![Architecture](assets/architecture.png
 
     Creates Google Docs reports 📊 with your research
 
+---
+
 ## 🎨 Visuals
 
     📅 Automation Cycle
     ✔️ Every Monday → Generate fresh startup insights
     ✔️ Every Thursday → Deep-dive follow-ups
     ✔️ Anytime → Manual run from GitHub Actions
+
+---
 
 ## 💡 Why Kairos?
 
@@ -61,6 +68,8 @@ Here’s how Kairos works under the hood:![Architecture](assets/architecture.png
     🌐 Seamless integration → Hugging Face + GitHub Actions + Google Drive
 
     🚀 Built for innovators → Focus on execution, not research busywork
+    
+---
 
 ## 📌 Roadmap
 
@@ -76,17 +85,23 @@ Here’s how Kairos works under the hood:![Architecture](assets/architecture.png
 
     ⏳ Multi-topic parallel runs
 
+---
+
 ## 🤝 Contributing
 
-    Contributions are welcome! 🎉
+Contributions are welcome! 🎉  
+If you’d like to add new features or suggest improvements, feel free to open an issue or PR.
+
+---
 
 ## 👨‍💻 Author
 
-    Made with ❤️ by Aryan
+Made with ❤️ by **Aryan**  
 
-    GitHub: Aryan-2511
+- 🌐 GitHub: [Aryan-2511](https://github.com/Aryan-2511)  
+- 🤗 Hugging Face: [Aryan-2511](https://huggingface.co/Aryan-2511)  
 
-    Hugging Face: Aryan-2511
+---
 
 ✨ With KAIROS, you don’t just research ideas…
 You research smarter. You dream bigger.
